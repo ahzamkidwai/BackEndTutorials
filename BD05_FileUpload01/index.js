@@ -9,7 +9,12 @@ const PORT = process.env.PORT;
 //Middlewares
 app.use(express.json());
 const fileupload = require("express-fileupload");
-app.use(fileupload());
+app.use(
+  fileupload({
+    useTempFiles: true,
+    tempFileDir: "/tmp/",
+  })
+);
 
 //Connecting App with Database
 require("./config/database").connect();
